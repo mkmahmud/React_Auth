@@ -7,6 +7,10 @@ const Login = () => {
     const { UserAuth } = useContext(AuthUserContext)
     const navigate = useNavigate();
 
+    if(UserAuth.loggedUser.uid){
+        navigate('/')
+    }
+
 
     // Email Password Log In 
     const handelEmailPassLogin = (e) => {

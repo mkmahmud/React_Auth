@@ -37,7 +37,7 @@ const Navbar = () => {
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to='/'>Home</Link></li>
-                        <li><a>Courses</a></li>
+                        <li><Link to='/courses'>Courses</Link></li>
                         <li><a>FAQ</a></li>
                         <li><a>Blog</a></li>
                         <li onClick={handeltheme}><a > {theme ? 'Dark' : 'Light'}</a></li>
@@ -49,10 +49,10 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to='/'>Home</Link></li>
-                    <li><a>Courses</a></li>
+                    <li><Link to='/courses'>Courses</Link></li>
                     <li><a>FAQ</a></li>
                     <li><a>Blog</a></li>
-                    <li onClick={handeltheme}><a > {theme ? 'Dark' : 'Light'}</a></li>
+                    <li onClick={handeltheme}><a > {theme ? <i class="fa-solid fa-moon"></i>: <i class="fa-regular fa-moon"></i>}</a></li>
                 </ul>
             </div>
             <div className="navbar-end">
