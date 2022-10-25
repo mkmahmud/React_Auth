@@ -1,11 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthUserContext } from '../../UserContext/AuthContext';
 
 const Login = () => {
+
+    const {UserAuth} = useContext(AuthUserContext)
+    const navigate = useNavigate();
+
+    const handelEmailPassLogin = (e) => {
+        e.preventDefault();
+        const userForm = e.target;
+        const userEmail = e.target.email.value;
+        const userPass = e.target.password.value;
+       
+        UserAuth.loginWithEmail(userEmail, userPass)
+        .then((userCredential)=>{
+            const user = userCredential.user;
+            navigate('/')
+            console.log(user)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
+
+    }
+
     return (
         <div className="artboard phone-2 mx-auto my-5 bg-[#150050] rounded text-white p-5">
         <h1 className='text-4xl p-4'>Log In</h1>
-        <form>
+        <form onSubmit={handelEmailPassLogin}>
             <div className="form-control">
                 <label className="label">
                     <span className="label-text">Your Email</span>
@@ -24,7 +48,7 @@ const Login = () => {
                     <input type="password" name='password' placeholder="90MKide3#@)" className="input input-bordered w-full" />
                 </label>
             </div>
-            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-success m-5" >Log In</button>
+            <button type='submit' className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-success m-5" >Log In</button>
 
         </form>
 
