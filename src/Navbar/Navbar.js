@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/img/logo.svg'
+import { AuthUserContext } from '../UserContext/AuthContext';
 import './Navbar.css'
 
 const Navbar = () => {
 
     const [theme, setTheme] = useState(true);
-    const [loggeduser, setLoggedUser] = useState(false);
+    const [user, setUser] = useState(true);
+    const {UserAuth} = useContext(AuthUserContext);
 
+    
+    // Set dark light Theme
     const handeltheme = () => {
         setTheme(!theme)
+    }
+
+    // Log Out 
+    const HandellogOut = () => {
+        UserAuth.logOut()
+        .then(() => {
+            console.log('Log Out')
+            setUser(false)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
     return (
@@ -42,7 +58,7 @@ const Navbar = () => {
             <div className="navbar-end">
 
                 {
-                    !loggeduser ?
+                    !UserAuth.loggedUser.uid ?
                         <ul className="menu menu-horizontal p-0">
                             <li><Link to='/login'><button className="btn btn-success">Log In</button></Link></li>
                             <li><Link to='/signUp'><button className="btn btn-warning">Sign Up</button></Link></li>
@@ -58,17 +74,17 @@ const Navbar = () => {
                             <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content rounded-box w-52">
                                 <li>
                                     <a className="justify-between">
-                                        Profile
+                                        {
+                                            UserAuth.loggedUser.uid? UserAuth.loggedUser.email : 'No Email'
+                                        }
                                     </a>
                                 </li>
                                 <li><a>Settings</a></li>
-                                <li><a>Logout</a></li>
+                                <li onClick={HandellogOut}><a>Logout</a></li>
                             </ul>
                         </div>
 
                 }
-
-
 
             </div>
         </div>
