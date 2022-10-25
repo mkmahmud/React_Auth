@@ -32,7 +32,11 @@ const Router = () => {
             return fetch('http://localhost:5000/category')
           },
           element: <Courses></Courses>
-        }
+        },
+        // {
+        //   path:'/courses/:id',
+        //   element:<Mainbar></Mainbar>
+        // }
       ]
     }
   ]);
