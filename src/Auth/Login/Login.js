@@ -4,75 +4,102 @@ import { AuthUserContext } from '../../UserContext/AuthContext';
 
 const Login = () => {
 
-    const {UserAuth} = useContext(AuthUserContext)
+    const { UserAuth } = useContext(AuthUserContext)
     const navigate = useNavigate();
 
+
+    // Email Password Log In 
     const handelEmailPassLogin = (e) => {
         e.preventDefault();
         const userForm = e.target;
         const userEmail = e.target.email.value;
         const userPass = e.target.password.value;
-       
+
         UserAuth.loginWithEmail(userEmail, userPass)
-        .then((userCredential)=>{
-            const user = userCredential.user;
+            .then((userCredential) => {
+                const user = userCredential.user;
+                navigate('/')
+                console.log(user)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+
+    // Google Log In 
+    const handelGoogleLogIn = () => {
+        UserAuth.googleLogIn()
+        .then((result) => {
+            const user = result.user;
             navigate('/')
             console.log(user)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-
-
+          }).catch((error) => {
+            console.log(error)
+          });
     }
+
+     // Github Log In 
+     const handelGithubLogIn = () => {
+        UserAuth.githubLogIn()
+        .then((result) => {
+            const user = result.user;
+            navigate('/')
+            console.log(user)
+          }).catch((error) => {
+            console.log(error.message)
+          });
+    }
+
+
 
     return (
         <div className="artboard phone-2 mx-auto my-5 bg-[#150050] rounded text-white p-5">
-        <h1 className='text-4xl p-4'>Log In</h1>
-        <form onSubmit={handelEmailPassLogin}>
-            <div className="form-control">
-                <label className="label">
-                    <span className="label-text">Your Email</span>
-                </label>
-                <label className="input-group">
-                    <span>Email</span>
-                    <input type="text" name='email' placeholder="info@site.com" className="input input-bordered w-full" />
-                </label>
+            <h1 className='text-4xl p-4'>Log In</h1>
+            <form onSubmit={handelEmailPassLogin}>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Your Email</span>
+                    </label>
+                    <label className="input-group">
+                        <span>Email</span>
+                        <input type="text" name='email' placeholder="info@site.com" className="input input-bordered w-full" />
+                    </label>
+                </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Your Password</span>
+                    </label>
+                    <label className="input-group">
+                        <span>Password</span>
+                        <input type="password" name='password' placeholder="90MKide3#@)" className="input input-bordered w-full" />
+                    </label>
+                </div>
+                <button type='submit' className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-success m-5" >Log In</button>
+
+            </form>
+
+            <h2 className='p-2 text-xl'>OR</h2>
+            <hr className='w-52 m-auto' />
+
+            <div className="popupLogin p-5">
+
+                <button onClick={handelGoogleLogIn} className="btn btn-warning btn-square m-2">
+                    <i class="fa fa-google" aria-hidden="true"></i>
+                </button>
+                <button onClick={handelGithubLogIn} className="btn btn-square m-2">
+                    <i class="fa fa-github" aria-hidden="true"></i>
+                </button>
+                <button className="btn btn-primary btn-square m-2">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                </button>
+                <button className="btn btn-success btn-square m-2">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </button>
             </div>
-            <div className="form-control">
-                <label className="label">
-                    <span className="label-text">Your Password</span>
-                </label>
-                <label className="input-group">
-                    <span>Password</span>
-                    <input type="password" name='password' placeholder="90MKide3#@)" className="input input-bordered w-full" />
-                </label>
-            </div>
-            <button type='submit' className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-success m-5" >Log In</button>
+            <p>Didn't have account <Link className='font-bold' to='/signUp'>Sign Up</Link></p>
 
-        </form>
-
-        <h2 className='p-2 text-xl'>OR</h2>
-        <hr className='w-52 m-auto' />
-
-        <div className="popupLogin p-5">
-
-            <button className="btn btn-warning btn-square m-2">
-                <i class="fa fa-google" aria-hidden="true"></i>
-            </button>
-            <button className="btn btn-square m-2">
-                <i class="fa fa-github" aria-hidden="true"></i>
-            </button>
-            <button className="btn btn-primary btn-square m-2">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-            </button>
-            <button className="btn btn-success btn-square m-2">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-            </button>
         </div>
-        <p>Didn't have account <Link className='font-bold' to='/signUp'>Sign Up</Link></p>
-
-    </div>
     );
 };
 

@@ -1,11 +1,51 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthUserContext } from '../../UserContext/AuthContext';
 
 const SignUp = () => {
+
+    const {UserAuth} = useContext(AuthUserContext);
+    const navigate = useNavigate();
+
+
+    // Createing New User
+    const handelSignUp = (e) => {
+        e.preventDefault();
+        // Getting data from user
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const photo = e.target.photo.value;
+
+        // Call Firebase function 
+        UserAuth.createUserEmainPass(email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log(user)
+            // Update Profile
+            UserAuth.updateUserProfile(name, photo)
+            .then(() => {
+                // Profile updated!
+               console.log('Profile Updated')
+              }).catch((error) => {
+                // An error occurred
+                console.log(error)
+              });
+            navigate('/')
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorMessage)
+          });
+    }
+
     return (
         <div className="artboard phone-5 mx-auto bg-[#16003B] rounded text-white my-5 p-5">
             <h1 className='text-4xl p-4'>Sign Up</h1>
-            <form>
+            <form onSubmit={handelSignUp} >
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Your Name</span>
@@ -30,16 +70,16 @@ const SignUp = () => {
                     </label>
                     <label className="input-group">
                         <span>Password</span>
-                        <input type="password" placeholder="Password" name='password' className="input input-bordered w-full" />
+                        <input type="password" placeholder="password" name='password' className="input input-bordered w-full" />
                     </label>
                 </div>
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Your Profile Picture</span>
+                        <span className="label-text">Your Profile Picture url</span>
                     </label>
                     <label className="input-group">
-                        <span>Photo</span>
-                        <input type="file" placeholder="-128390091" name='phone' className="input input-bordered w-full" />
+                        <span>Photo URL</span>
+                        <input type="text" placeholder="https://i0.wp.com/newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg?ssl=1" name='photo' className="input input-bordered w-full" />
                     </label>
                 </div>
                 <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-success m-5">Sign Up</button>

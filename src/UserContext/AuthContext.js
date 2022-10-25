@@ -1,5 +1,15 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    onAuthStateChanged, 
+    signOut, 
+    GoogleAuthProvider, 
+    signInWithPopup, 
+    GithubAuthProvider, 
+    createUserWithEmailAndPassword,
+    updateProfile   
+} from "firebase/auth";
 import app from '../Firebase/Firebase.config';
 
 const auth = getAuth(app)
@@ -10,10 +20,37 @@ const AuthContext = ({ children }) => {
 
     const [loggedUser, setLoggedUser] = useState({});
 
+    // Create User with Email and pass
+    const createUserEmainPass = (email, pass) => {
+        return createUserWithEmailAndPassword(auth, email, pass)
+    }
+
+    // Update Profile
+    const updateUserProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+          })
+    }
+
+
     // Log In With Email password 
     const loginWithEmail = (email, pass) => {
         return signInWithEmailAndPassword(auth, email, pass)
     }
+
+    // Google Log In 
+    const googleProvider = new GoogleAuthProvider();
+    const googleLogIn = () => {
+        return signInWithPopup(auth, googleProvider)
+    }
+
+
+    // Github Log in
+    const githubProvider = new GithubAuthProvider();
+    const githubLogIn = () => {
+        return signInWithPopup(auth, githubProvider)
+    }
+
 
     // get user logged in or not
     useEffect(() => {
@@ -40,7 +77,11 @@ const AuthContext = ({ children }) => {
         displayname: 'MK',
         loginWithEmail,
         loggedUser,
-        logOut
+        logOut,
+        googleLogIn,
+        githubLogIn,
+        createUserEmainPass,
+        updateUserProfile
     }
     const authInfo = { UserAuth }
 
