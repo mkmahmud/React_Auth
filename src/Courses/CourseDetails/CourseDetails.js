@@ -1,5 +1,7 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
+import MyPdf from './MyPdf';
+
 
 
 const CourseDetails = () => {
@@ -41,7 +43,7 @@ const CourseDetails = () => {
                         <img src={picture} style={{ height: '200px' }} alt="" />
                         <h2 className='text-center text-4xl p-3'>$<b className='text-[#FB2576]'>{price}</b></h2>
                         <div className="form-control mt-6">
-                            <button className="btn btn-success">Check Out</button>
+                            <button className="btn btn-success"><Link to='/checkout'>Get premium access</Link></button>
                         </div>
                         <div className="totalstudent flex justify-between">
                             <h2 className='text-center p-3'><i class="fa-solid fa-users"></i> Total student: <br /> 10</h2>
