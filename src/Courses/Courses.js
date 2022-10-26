@@ -13,7 +13,7 @@ const Courses = () => {
 
     // Load All Data
     useEffect(() => {
-        fetch('http://localhost:5000/courses')
+        fetch('https://dragon-news-server-module-62-mkmahmud.vercel.app/courses')
             .then(res => res.json())
             .then(data => {
                 setMaincourses(data);

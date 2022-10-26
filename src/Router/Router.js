@@ -30,14 +30,14 @@ const Router = () => {
         {
           path: '/courses',
           loader: async () => {
-            return fetch('http://localhost:5000/category')
+            return fetch('https://dragon-news-server-module-62-mkmahmud.vercel.app/category')
           },
           element: <Courses></Courses>
         },
         {
           path:'/courses/:id',
           loader: async({params}) => {
-            return fetch(`http://localhost:5000/courses/${params.id}`)
+            return fetch(`https://dragon-news-server-module-62-mkmahmud.vercel.app/courses/${params.id}`)
           },
           element:<CourseDetails></CourseDetails>
         }

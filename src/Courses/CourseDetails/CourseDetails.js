@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
+
 const CourseDetails = () => {
     const detailsData = useLoaderData()
 
@@ -34,6 +35,9 @@ const CourseDetails = () => {
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-[#150050]">
                     <div className="card-body text-left">
+                    <div className="form-control mt-6">
+                            <button className="btn btn-warning m-4">Download PDF</button>
+                        </div>
                         <img src={picture} style={{ height: '200px' }} alt="" />
                         <h2 className='text-center text-4xl p-3'>$<b className='text-[#FB2576]'>{price}</b></h2>
                         <div className="form-control mt-6">
@@ -52,6 +56,7 @@ const CourseDetails = () => {
                             </ul>
                         </div>
                         <h2 className='text-center'>Call use more information +880172352323</h2>
+                        
                     </div>
                 </div>
             </div>

@@ -1,15 +1,18 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthUserContext } from '../../UserContext/AuthContext';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
 
     const { UserAuth } = useContext(AuthUserContext)
     const navigate = useNavigate();
 
-    if(UserAuth.loggedUser.uid){
+    if (UserAuth.loggedUser.uid) {
         navigate('/')
     }
+    // Wrong User message
+    const wrongUser = () => toast.error('Your Email or Password Incorrect');
 
 
     // Email Password Log In 
@@ -27,6 +30,7 @@ const Login = () => {
             })
             .catch((err) => {
                 console.log(err)
+                wrongUser()
             })
     }
 
@@ -34,25 +38,25 @@ const Login = () => {
     // Google Log In 
     const handelGoogleLogIn = () => {
         UserAuth.googleLogIn()
-        .then((result) => {
-            const user = result.user;
-            navigate('/')
-            console.log(user)
-          }).catch((error) => {
-            console.log(error)
-          });
+            .then((result) => {
+                const user = result.user;
+                navigate('/')
+                console.log(user)
+            }).catch((error) => {
+                console.log(error)
+            });
     }
 
-     // Github Log In 
-     const handelGithubLogIn = () => {
+    // Github Log In 
+    const handelGithubLogIn = () => {
         UserAuth.githubLogIn()
-        .then((result) => {
-            const user = result.user;
-            navigate('/')
-            console.log(user)
-          }).catch((error) => {
-            console.log(error.message)
-          });
+            .then((result) => {
+                const user = result.user;
+                navigate('/')
+                console.log(user)
+            }).catch((error) => {
+                console.log(error.message)
+            });
     }
 
 
@@ -83,6 +87,7 @@ const Login = () => {
 
             </form>
 
+            <Toaster />
             <h2 className='p-2 text-xl'>OR</h2>
             <hr className='w-52 m-auto' />
 

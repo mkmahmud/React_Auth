@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthUserContext } from '../../UserContext/AuthContext';
+import toast, { Toaster } from 'react-hot-toast';
 
 const SignUp = () => {
 
     const {UserAuth} = useContext(AuthUserContext);
     const navigate = useNavigate();
 
+
+    // Email Already exist message
+    const emailAlredayExist = () => toast.error('Your Email Already Exist');
 
     // Createing New User
     const handelSignUp = (e) => {
@@ -39,6 +43,7 @@ const SignUp = () => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorMessage)
+            emailAlredayExist()
           });
     }
 
@@ -84,7 +89,7 @@ const SignUp = () => {
                 </div>
                 <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-success m-5">Sign Up</button>
             </form>
-
+            <Toaster />
             <h2 className='p-2 text-xl'>OR</h2>
             <hr className='w-52 m-auto' />
 
