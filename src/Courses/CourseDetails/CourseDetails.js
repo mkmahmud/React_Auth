@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import MyPdf from './MyPdf';
+import './CourseDetails.css'
 
 
 

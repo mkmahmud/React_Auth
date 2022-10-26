@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './SingelCourse.css'
 
 const SingelCourse = ({ data }) => {
 
@@ -11,7 +12,7 @@ const SingelCourse = ({ data }) => {
     
     return (
     
-        <div className="card card-compact w-full text-white bg-[#000000] shadow-xl ">
+        <div className="singelCourse card card-compact w-full text-white bg-[#000000] shadow-xl ">
             <figure><img style={{height:'200px'}} src={data.picture} alt="Shoes" /></figure>
             <div className="card-body">
                 <div className="badge badge-secondary">duration: {data.duration}</div>

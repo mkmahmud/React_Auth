@@ -34,7 +34,7 @@ const Courses = () => {
 
 
     return (
-        <div className='w-full flex'>
+        <div className='courses w-full flex'>
             <div className="sidebar w-1/4 bg-[#3F0071] text-white">
                 <h2 className='text-2xl p-4'>Categories</h2>
                 {

@@ -38,7 +38,7 @@ const Navbar = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/courses'>Courses</Link></li>
-                        <li><a>FAQ</a></li>
+                        <li><Link to='/faq'>FAQ</Link></li>
                         <li><Link to='/blog'>Blog</Link></li>
                         <li onClick={handeltheme}><a > {theme ? 'Dark' : 'Light'}</a></li>
                     </ul>
@@ -50,7 +50,7 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal p-0">
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/courses'>Courses</Link></li>
-                    <li><a>FAQ</a></li>
+                    <li><Link to='/faq'>FAQ</Link></li>
                     <li><Link to='/blog'>Blog</Link></li>
                     <li onClick={handeltheme}><a > {theme ? <i class="fa-solid fa-moon"></i>: <i class="fa-regular fa-moon"></i>}</a></li>
                 </ul>
