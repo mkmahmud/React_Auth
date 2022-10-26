@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Login from '../Auth/Login/Login';
 import SignUp from '../Auth/SignUp/SignUp';
+import CourseDetails from '../Courses/CourseDetails/CourseDetails';
 import Courses from '../Courses/Courses';
 import Mainbar from '../Courses/Mainbar';
 import CoursesList from '../Layout/CoursesList';
@@ -33,10 +34,13 @@ const Router = () => {
           },
           element: <Courses></Courses>
         },
-        // {
-        //   path:'/courses/:id',
-        //   element:<Mainbar></Mainbar>
-        // }
+        {
+          path:'/courses/:id',
+          loader: async({params}) => {
+            return fetch(`http://localhost:5000/courses/${params.id}`)
+          },
+          element:<CourseDetails></CourseDetails>
+        }
       ]
     }
   ]);
