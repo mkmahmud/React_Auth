@@ -19,14 +19,17 @@ export const AuthUserContext = createContext();
 const AuthContext = ({ children }) => {
 
     const [loggedUser, setLoggedUser] = useState({});
+    const [loading, setLoading] = useState(true)
 
     // Create User with Email and pass
     const createUserEmainPass = (email, pass) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth, email, pass)
     }
 
     // Update Profile
     const updateUserProfile = (name, photo) => {
+        setLoading(true)
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
           })
@@ -41,6 +44,7 @@ const AuthContext = ({ children }) => {
     // Google Log In 
     const googleProvider = new GoogleAuthProvider();
     const googleLogIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
 
@@ -48,6 +52,7 @@ const AuthContext = ({ children }) => {
     // Github Log in
     const githubProvider = new GithubAuthProvider();
     const githubLogIn = () => {
+        setLoading(true)
         return signInWithPopup(auth, githubProvider)
     }
 
@@ -55,14 +60,19 @@ const AuthContext = ({ children }) => {
     // get user logged in or not
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
-            const uid = loggedUser.uid
+           if(loggedUser){
+            const uid = loggedUser.uid;
+            setLoading(false)
             setLoggedUser(loggedUser)
+            
+           }else{
+            console.log('UserNot Logged in')
+           }
         })
-
         return () => {
             unsubscribe();
         }
-    }, [])
+    }, []);
 
      // SignOut
 
@@ -81,7 +91,8 @@ const AuthContext = ({ children }) => {
         googleLogIn,
         githubLogIn,
         createUserEmainPass,
-        updateUserProfile
+        updateUserProfile,
+        loading
     }
     const authInfo = { UserAuth }
 

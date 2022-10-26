@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, Navigate  } from 'react-router-dom';
 import { AuthUserContext } from '../../UserContext/AuthContext';
 import toast, { Toaster } from 'react-hot-toast';
+
 
 const Login = () => {
 
@@ -14,6 +15,11 @@ const Login = () => {
     // Wrong User message
     const wrongUser = () => toast.error('Your Email or Password Incorrect');
 
+    // Get private route user path
+    const location = useLocation(); 
+    const from = location.state?.from?.pathname || '/'
+
+    console.log(from)
 
     // Email Password Log In 
     const handelEmailPassLogin = (e) => {
@@ -25,7 +31,10 @@ const Login = () => {
         UserAuth.loginWithEmail(userEmail, userPass)
             .then((userCredential) => {
                 const user = userCredential.user;
-                navigate('/')
+                if(!UserAuth.loading){
+                    return <div> Loading</div>
+                }
+                return navigate('/courses')
                 console.log(user)
             })
             .catch((err) => {

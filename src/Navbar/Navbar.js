@@ -39,7 +39,7 @@ const Navbar = () => {
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/courses'>Courses</Link></li>
                         <li><a>FAQ</a></li>
-                        <li><a>Blog</a></li>
+                        <li><Link to='/blog'>Blog</Link></li>
                         <li onClick={handeltheme}><a > {theme ? 'Dark' : 'Light'}</a></li>
                     </ul>
                 </div>
@@ -51,7 +51,7 @@ const Navbar = () => {
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/courses'>Courses</Link></li>
                     <li><a>FAQ</a></li>
-                    <li><a>Blog</a></li>
+                    <li><Link to='/blog'>Blog</Link></li>
                     <li onClick={handeltheme}><a > {theme ? <i class="fa-solid fa-moon"></i>: <i class="fa-regular fa-moon"></i>}</a></li>
                 </ul>
             </div>
