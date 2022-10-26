@@ -15,6 +15,7 @@ import Faq from '../Faq/Faq';
 import CoursesList from '../Layout/CoursesList';
 import Main from '../Layout/Main';
 import NotFound from '../NotFound/NotFound';
+import App from '../PDF/App';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const Router = () => {
@@ -60,6 +61,11 @@ const Router = () => {
         {
           path:'/faq',
           element:<Faq></Faq>
+        },
+        {
+          // Pdf file check
+          path:'/pdf',
+          element:<App></App>
         }
       ]
     },

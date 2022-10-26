@@ -8,9 +8,9 @@ const Navbar = () => {
 
     const [theme, setTheme] = useState(true);
     const [user, setUser] = useState(true);
-    const {UserAuth} = useContext(AuthUserContext);
+    const { UserAuth } = useContext(AuthUserContext);
 
-    
+
     // Set dark light Theme
     const handeltheme = () => {
         setTheme(!theme)
@@ -19,13 +19,13 @@ const Navbar = () => {
     // Log Out 
     const HandellogOut = () => {
         UserAuth.logOut()
-        .then(() => {
-            console.log('Log Out')
-            setUser(false)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+            .then(() => {
+                console.log('Log Out')
+                setUser(false)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
     return (
@@ -40,7 +40,7 @@ const Navbar = () => {
                         <li><Link to='/courses'>Courses</Link></li>
                         <li><Link to='/faq'>FAQ</Link></li>
                         <li><Link to='/blog'>Blog</Link></li>
-                        <li onClick={handeltheme}><a > {theme ? 'Dark' : 'Light'}</a></li>
+
                     </ul>
                 </div>
                 <img className='logo' src={logo} alt="" />
@@ -52,7 +52,7 @@ const Navbar = () => {
                     <li><Link to='/courses'>Courses</Link></li>
                     <li><Link to='/faq'>FAQ</Link></li>
                     <li><Link to='/blog'>Blog</Link></li>
-                    <li onClick={handeltheme}><a > {theme ? <i class="fa-solid fa-moon"></i>: <i class="fa-regular fa-moon"></i>}</a></li>
+
                 </ul>
             </div>
             <div className="navbar-end">
@@ -66,16 +66,20 @@ const Navbar = () => {
                         :
 
                         <div className="dropdown dropdown-end ">
-                            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <img src={UserAuth.loggedUser.photoURL} />
-                                </div>
-                            </label>
+                            <div className="profile flex items-center">
+                                <div className='px-5 text-[#FB2676]' onClick={handeltheme}><a > {theme ? <i class="fa-solid fa-moon" style={{fontSize:'30px'}}></i> : <i class="fa-regular fa-moon" style={{fontSize:'30px'}}></i>}</a></div>
+                                <label tabIndex={0} className="btn btn-ghost btn-circle avatar " >
+                                    <div className="w-10 rounded-full">
+                                        <img src={UserAuth.loggedUser.photoURL} title={UserAuth.loggedUser.displayName}  />
+                                    </div>
+                                </label>
+                            </div>
+
                             <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-[#FB2576] text-white rounded-box w-52">
                                 <li>
                                     <a className="justify-between">
                                         {
-                                            UserAuth.loggedUser.uid? UserAuth.loggedUser.displayName : 'No Name'
+                                            UserAuth.loggedUser.uid ? UserAuth.loggedUser.displayName : 'No Name'
                                         }
                                     </a>
                                 </li>
