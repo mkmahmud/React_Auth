@@ -42,7 +42,7 @@ const CourseDetails = () => {
                         <div className="form-control mt-6">
                             <button className="btn btn-warning m-4">
                                 <PDFDownloadLink document={<PDFFile picture={picture} course_Title={course_Title} name={name} description={ description} />} filename="FORM">
-                                    {({ loading }) => (loading ? <button>Loading Document...</button> : <button>Download</button>)}
+                                    {({ loading }) => (loading ? <button>Loading Document...</button> : <button>Download as PDF</button>)}
                                 </PDFDownloadLink>
                             </button>
                         </div>

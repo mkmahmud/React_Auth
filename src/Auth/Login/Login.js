@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, Navigate  } from 'react-router-dom';
 import { AuthUserContext } from '../../UserContext/AuthContext';
 import toast, { Toaster } from 'react-hot-toast';
@@ -9,18 +9,19 @@ const Login = () => {
     const { UserAuth } = useContext(AuthUserContext)
     const navigate = useNavigate();
 
-    if (UserAuth.loggedUser.uid) {
-        navigate('/')
-    }
+    
     // Wrong User message
     const wrongUser = () => toast.error('Your Email or Password Incorrect');
 
     // Get private route user path
     const location = useLocation(); 
-    const from = location.state?.from?.pathname || '/'
+    const from = location.state?.from?.pathname || '/';
 
+    // if (UserAuth.loggedUser.uid) {
+    //     navigate('/')
+    // }
     console.log(from)
-
+    
     // Email Password Log In 
     const handelEmailPassLogin = (e) => {
         e.preventDefault();
@@ -31,11 +32,10 @@ const Login = () => {
         UserAuth.loginWithEmail(userEmail, userPass)
             .then((userCredential) => {
                 const user = userCredential.user;
-                if(!UserAuth.loading){
-                    return <div> Loading</div>
-                }
-                return navigate('/courses')
-                console.log(user)
+                console.log('looged in before navigate')
+                navigate(from, {replace:true})
+                console.log('looged in after navigate')
+
             })
             .catch((err) => {
                 console.log(err)
@@ -68,7 +68,7 @@ const Login = () => {
             });
     }
 
-
+   
 
     return (
         <div className="artboard phone-2 mx-auto my-5 bg-[#150050] rounded text-white p-5">
