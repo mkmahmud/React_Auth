@@ -5,3 +5,16 @@
 .logo{
     height: 80px;
 }
+
+@media only screen and (max-width: 600px){
+    .navbar{
+        height: 100px;
+    }
+    .menu{
+        display: block;
+    }
+    .menu li{
+        margin: 0;
+    }
+    
+}

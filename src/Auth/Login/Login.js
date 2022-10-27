@@ -8,6 +8,7 @@ const Login = () => {
 
     const { UserAuth } = useContext(AuthUserContext)
     const navigate = useNavigate();
+    const [currentLoggedUser, setcurrentLoggedUser] = useState(false)
 
     
     // Wrong User message
@@ -17,9 +18,7 @@ const Login = () => {
     const location = useLocation(); 
     const from = location.state?.from?.pathname || '/';
 
-    // if (UserAuth.loggedUser.uid) {
-    //     navigate('/')
-    // }
+  
     console.log(from)
     
     // Email Password Log In 
@@ -34,6 +33,7 @@ const Login = () => {
                 const user = userCredential.user;
                 console.log('looged in before navigate')
                 navigate(from, {replace:true})
+                setcurrentLoggedUser(true)
                 console.log('looged in after navigate')
 
             })

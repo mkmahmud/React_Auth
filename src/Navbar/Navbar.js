@@ -30,6 +30,7 @@ const Navbar = () => {
 
     return (
         <div className="navbar">
+
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -55,19 +56,19 @@ const Navbar = () => {
 
                 </ul>
             </div>
+            
             <div className="navbar-end">
 
                 {
                     !UserAuth.loggedUser.uid ?
                         <ul className="menu menu-horizontal p-0">
-                            <li><Link to='/login'><button className="btn btn-success">Log In</button></Link></li>
-                            <li><Link to='/signUp'><button className="btn btn-warning">Sign Up</button></Link></li>
+                            <li><Link to='/login'>Log In</Link></li>
+                            <li><Link to='/signUp'>Sign Up</Link></li>
                         </ul>
                         :
 
                         <div className="dropdown dropdown-end ">
                             <div className="profile flex items-center">
-                                <div className='px-5 text-[#FB2676]' onClick={handeltheme}><a > {theme ? <i class="fa-solid fa-moon" style={{fontSize:'30px'}}></i> : <i class="fa-regular fa-moon" style={{fontSize:'30px'}}></i>}</a></div>
                                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar " >
                                     <div className="w-10 rounded-full">
                                         <img src={UserAuth.loggedUser.photoURL} title={UserAuth.loggedUser.displayName}  />
@@ -91,6 +92,8 @@ const Navbar = () => {
                 }
 
             </div>
+            <div className='px-5 text-[#FB2676]' onClick={handeltheme}><a > {theme ? <i class="fa-solid fa-moon" style={{fontSize:'30px'}}></i> : <i class="fa-regular fa-moon" style={{fontSize:'30px'}}></i>}</a></div>
+
         </div>
     );
 };

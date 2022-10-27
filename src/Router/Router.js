@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Login from '../Auth/Login/Login';
 import SignUp from '../Auth/SignUp/SignUp';
+import Block1 from '../Block/Block1';
 import Blog from '../Blog/Blog';
 import CheckOut from '../CheckOut/CheckOut';
 import CourseDetails from '../Courses/CourseDetails/CourseDetails';
@@ -16,6 +17,7 @@ import CoursesList from '../Layout/CoursesList';
 import Main from '../Layout/Main';
 import NotFound from '../NotFound/NotFound';
 import App from '../PDF/App';
+import Slider from '../Slider/Slider';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const Router = () => {
@@ -25,6 +27,13 @@ const Router = () => {
       path: "/",
       element: <Main></Main>,
       children: [
+        {
+          path:'/',
+          element:<>
+          <Slider></Slider>
+          <Block1></Block1>
+          </>
+        },
         {
           path: '/login',
           element: <Login></Login>
