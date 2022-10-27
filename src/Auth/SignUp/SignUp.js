@@ -58,7 +58,7 @@ const SignUp = () => {
                     </label>
                     <label className="input-group">
                         <span>Name</span>
-                        <input type="text" placeholder="Mahmudul Hasan " name='name' className="input input-bordered w-full" />
+                        <input type="text" placeholder="Mahmudul Hasan " required name='name' className="input input-bordered w-full" />
                     </label>
                 </div>
                 <div className="form-control">
@@ -67,7 +67,7 @@ const SignUp = () => {
                     </label>
                     <label className="input-group">
                         <span>Email</span>
-                        <input type="text" placeholder="info@site.com" name='email' className="input input-bordered w-full" />
+                        <input type="text" placeholder="info@site.com" required name='email' className="input input-bordered w-full" />
                     </label>
                 </div>
                 <div className="form-control">
@@ -76,7 +76,7 @@ const SignUp = () => {
                     </label>
                     <label className="input-group">
                         <span>Password</span>
-                        <input type="password" placeholder="password" name='password' className="input input-bordered w-full" />
+                        <input type="password" placeholder="password" required name='password' className="input input-bordered w-full" />
                     </label>
                 </div>
                 <div className="form-control">
@@ -85,7 +85,7 @@ const SignUp = () => {
                     </label>
                     <label className="input-group">
                         <span>Photo URL</span>
-                        <input type="text" placeholder="https://i0.wp.com/newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg?ssl=1" name='photo' className="input input-bordered w-full" />
+                        <input type="text" required placeholder="https://i0.wp.com/newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg?ssl=1" name='photo' className="input input-bordered w-full" />
                     </label>
                 </div>
                 <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-success m-5">Sign Up</button>

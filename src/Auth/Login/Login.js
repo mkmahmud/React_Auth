@@ -78,7 +78,7 @@ const Login = () => {
    
 
     return (
-        <div className="artboard phone-2 mx-auto my-5 bg-[#150050] rounded text-white p-5" style={{width:'400px',height:'800px'}}>
+        <div className="artboard phone-2 mx-auto my-5 bg-[#150050] rounded text-white p-5">
             <h1 className='text-4xl p-4'>Log In</h1>
             <form onSubmit={handelEmailPassLogin}>
                 <div className="form-control">
@@ -87,7 +87,7 @@ const Login = () => {
                     </label>
                     <label className="input-group">
                         <span>Email</span>
-                        <input type="text" name='email' placeholder="info@site.com" className="input input-bordered w-full" />
+                        <input type="text" name='email' required placeholder="info@site.com" className="input input-bordered w-full" />
                     </label>
                 </div>
                 <div className="form-control">
@@ -96,7 +96,7 @@ const Login = () => {
                     </label>
                     <label className="input-group">
                         <span>Password</span>
-                        <input type="password" name='password' placeholder="90MKide3#@)" className="input input-bordered w-full" />
+                        <input type="password" name='password' required placeholder="90MKide3#@)" className="input input-bordered w-full" />
                     </label>
                 </div>
                 <button type='submit' className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-success m-5" >Log In</button>
