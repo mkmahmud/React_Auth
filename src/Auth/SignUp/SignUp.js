@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthUserContext } from '../../UserContext/AuthContext';
 import toast, { Toaster } from 'react-hot-toast';
+import './SignUp.css'
 
 const SignUp = () => {
 
@@ -48,7 +49,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className="artboard phone-5 mx-auto bg-[#16003B] rounded text-white my-5 p-5">
+        <div className="artboard  mx-auto bg-[#16003B] rounded text-white my-5 p-5" >
             <h1 className='text-4xl p-4'>Sign Up</h1>
             <form onSubmit={handelSignUp} >
                 <div className="form-control">

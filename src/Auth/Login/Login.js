@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, Navigate  } from 'react-router-dom';
 import { AuthUserContext } from '../../UserContext/AuthContext';
 import toast, { Toaster } from 'react-hot-toast';
-
+import './Login.css'
 
 const Login = () => {
 
@@ -78,7 +78,7 @@ const Login = () => {
    
 
     return (
-        <div className="artboard phone-2 mx-auto my-5 bg-[#150050] rounded text-white p-5">
+        <div className="artboard phone-2 mx-auto my-5 bg-[#150050] rounded text-white p-5" style={{width:'400px',height:'800px'}}>
             <h1 className='text-4xl p-4'>Log In</h1>
             <form onSubmit={handelEmailPassLogin}>
                 <div className="form-control">
