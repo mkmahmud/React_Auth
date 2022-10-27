@@ -22,6 +22,13 @@ const CourseDetails = () => {
                             <h2 className='text-2xl px-5'>{name}</h2>
                         </div>
                     </div>
+                    <div className="courseTitil">
+                        <h2 className='text-4xl font-bold text-[#FB2676]'>
+                            {
+                                course_Title
+                            }
+                        </h2>
+                    </div>
                     <div className="whatYouWillLearn py-5">
                         <h2 className='text-2xl font-bold'>What you will learn</h2>
                         <ul>

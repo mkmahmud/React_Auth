@@ -10,6 +10,7 @@ const Login = () => {
     const navigate = useNavigate();
     const [currentLoggedUser, setcurrentLoggedUser] = useState(false)
 
+   
     
     // Wrong User message
     const wrongUser = () => toast.error('Your Email or Password Incorrect');
@@ -18,6 +19,12 @@ const Login = () => {
     const location = useLocation(); 
     const from = location.state?.from?.pathname || '/';
 
+    if(currentLoggedUser){
+        navigate('/')
+    }else{
+        console.log('Not Logged in')
+
+    }
   
     console.log(from)
     

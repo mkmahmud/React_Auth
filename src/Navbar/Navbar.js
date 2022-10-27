@@ -14,6 +14,13 @@ const Navbar = () => {
     // Set dark light Theme
     const handeltheme = () => {
         setTheme(!theme)
+        if(theme){
+            const body = document.getElementById('App');
+            body.style.background = 'rebeccapurple';
+        }else{
+            const body = document.getElementById('App');
+            body.style.background = ' black'; 
+        }
     }
 
     // Log Out 
