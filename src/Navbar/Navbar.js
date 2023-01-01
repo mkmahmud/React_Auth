@@ -67,7 +67,7 @@ const Navbar = () => {
             <div className="navbar-end">
 
                 {
-                    !UserAuth.loggedUser.uid ?
+                    !UserAuth.loggedUser?.uid ?
                         <ul className="menu menu-horizontal p-0">
                             <li><Link to='/login'>Log In</Link></li>
                             <li><Link to='/signUp'>Sign Up</Link></li>
@@ -87,7 +87,7 @@ const Navbar = () => {
                                 <li>
                                     <a className="justify-between">
                                         {
-                                            UserAuth.loggedUser.uid ? UserAuth.loggedUser.displayName : 'No Name'
+                                            UserAuth.loggedUser?.uid ? UserAuth.loggedUser.displayName : 'No Name'
                                         }
                                     </a>
                                 </li>

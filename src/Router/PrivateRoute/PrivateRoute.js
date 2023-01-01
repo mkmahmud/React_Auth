@@ -8,17 +8,17 @@ const PrivateRoute = ({children}) => {
     const {UserAuth} = useContext(AuthUserContext);
     const location = useLocation();
 
-    
+     
     if(UserAuth.loading  ){
-        return <button type="button" class="bg-indigo-500 ..." disabled><svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24"></svg>Processing... </button>
+        return <button type="button" class="bg-indigo-500 ..." disabled>Processing... </button>
     }
 
     console.log(location)
 
     const logged = UserAuth.loggedUser;
-    console.log(logged.uid)
+    // console.log(logged.uid)
     
-    if(!logged.uid){
+    if(!logged){
         return <Navigate to='/login' state={{ from: location }} replace ></Navigate>
     }
 

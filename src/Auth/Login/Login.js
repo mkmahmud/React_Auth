@@ -19,14 +19,16 @@ const Login = () => {
     const location = useLocation(); 
     const from = location.state?.from?.pathname || '/';
 
-    if(currentLoggedUser){
-        navigate('/')
-    }else{
-        console.log('Not Logged in')
+    // if(currentLoggedUser){
+    //     navigate('/')
+    // }else{
+    //     console.log('Not Logged in')
 
-    }
+    // }
   
     console.log(from)
+
+    const loggedUser = UserAuth.loggedUser; 
     
     // Email Password Log In 
     const handelEmailPassLogin = (e) => {
@@ -39,7 +41,7 @@ const Login = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log('looged in before navigate')
-                navigate(from, {replace:true})
+                loggedUser(user)
                 setcurrentLoggedUser(true)
                 console.log('looged in after navigate')
 
@@ -48,6 +50,8 @@ const Login = () => {
                 console.log(err)
                 wrongUser()
             })
+
+
     }
 
 
@@ -56,7 +60,7 @@ const Login = () => {
         UserAuth.googleLogIn()
             .then((result) => {
                 const user = result.user;
-                navigate('/')
+                // navigate('/')
                 console.log(user)
             }).catch((error) => {
                 console.log(error)
@@ -68,12 +72,19 @@ const Login = () => {
         UserAuth.githubLogIn()
             .then((result) => {
                 const user = result.user;
-                navigate('/')
+                // navigate('/')
                 console.log(user)
             }).catch((error) => {
                 console.log(error.message)
             });
     }
+
+
+    useEffect(()=>{
+        if(loggedUser){
+            navigate(from, {replace:true})
+        }
+    },[loggedUser, navigate, from])
 
    
 

@@ -18,7 +18,7 @@ export const AuthUserContext = createContext();
 
 const AuthContext = ({ children }) => {
 
-    const [loggedUser, setLoggedUser] = useState({});
+    const [loggedUser, setLoggedUser] = useState(null);
     const [loading, setLoading] = useState(true)
 
     // Create User with Email and pass
@@ -56,22 +56,17 @@ const AuthContext = ({ children }) => {
         return signInWithPopup(auth, githubProvider)
     }
 
-
+ 
     // get user logged in or not
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
-           if(loggedUser){
-            const uid = loggedUser.uid;
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+           
             setLoading(false)
-            setLoggedUser(loggedUser)
+            setLoggedUser(currentUser)
             
-           }else{
-            console.log('UserNot Logged in')
-           }
+           
         })
-        return () => {
-            unsubscribe();
-        }
+        return () => unsubscribe();
     }, []);
 
      // SignOut
